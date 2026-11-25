@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Findora | Lost &amp; Found</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header"><div class="header-inner">
+  <a class="brand" href="#"><span class="brand-mark" aria-hidden="true">⌕</span><span class="brand-copy"><strong>Findora</strong><small>School Lost &amp; Found</small></span></a>
+  <nav aria-label="Main navigation"><a class="nav-link" href="#browse">Browse Items</a><a class="post-button" href="#report"><span>＋</span> Post Item</a><span class="user-chip"><span class="avatar">S</span> Student</span><a class="logout-link" href="#browse">Home</a></nav>
+</div></header>
+<section class="search-band"><div class="search-inner">
+  <label class="ai-search-box"><span class="robot" aria-hidden="true">🤖</span><input id="searchInput" type="search" placeholder="Try: 'I lost my blue backpack near the cafeteria yesterday'" aria-label="Search lost and found items"><span class="ai-tag">AI Search</span></label>
+  <button class="search-button" type="button" id="searchButton" aria-label="Search">⌕</button>
+</div></section>
+<section class="filter-band" aria-label="Item filters"><div class="filter-inner">
+  <label class="filter-select"><span>📦</span><select id="typeFilter" aria-label="Filter by item type"><option value="All">All Items</option><option value="Lost Item">Lost Items</option><option value="Found Item">Found Items</option></select></label>
+  <label class="filter-select"><span>🏷️</span><select id="categoryFilter" aria-label="Filter by category"><option value="All">All Categories</option><option>Accessories</option><option>Books &amp; School Supplies</option><option>Electronics</option><option>ID &amp; Cards</option><option>Personal Belongings</option><option>Others</option></select></label>
+</div></section>
+<main class="container">
+<section class="section listing-section" id="browse"><div class="listing-heading"><div><p class="eyebrow">Find what you're looking for</p><h1>Recently Reported Items</h1></div><span class="result-count" id="resultCount">Connecting…</span></div>
+  <div id="connectionMessage" class="connection-message" role="status">Connecting to the shared Findora database…</div>
+  <div id="itemGrid" class="item-grid" aria-live="polite"></div><p id="emptyState" class="empty-state" hidden>No matching items found. Try another keyword or category.</p>
+</section>
+<section class="stats" aria-label="Item summary">
+  <article><span class="stat-icon">📦</span><div><strong id="totalCount">0</strong><small>Total reports</small></div></article>
+  <article><span class="stat-icon">🔎</span><div><strong id="lostCount">0</strong><small>Lost items</small></div></article>
+  <article><span class="stat-icon">✨</span><div><strong id="foundCount">0</strong><small>Found items</small></div></article>
+  <article><span class="stat-icon">✓</span><div><strong id="resolvedCount">0</strong><small>Claimed / returned</small></div></article>
+</section>
+<section class="section two-column">
+<div class="form-panel" id="report"><p class="eyebrow">Add a report</p><h2>Post a lost or found item</h2><p class="muted">Share the details so the school community can help.</p>
+<form id="reportForm"><div class="form-grid">
+<label>Report type *<select id="reportType" required><option value="">Choose type</option><option>Lost Item</option><option>Found Item</option></select></label>
+<label>Item name *<input id="itemName" type="text" maxlength="70" required placeholder="e.g. Blue water bottle"></label>
+<label>Category *<select id="itemCategory" required><option value="">Choose category</option><option>Accessories</option><option>Books &amp; School Supplies</option><option>Electronics</option><option>ID &amp; Cards</option><option>Personal Belongings</option><option>Others</option></select></label>
+<label>Date lost or found *<input id="itemDate" type="date" required></label>
+<label class="full">Description *<textarea id="itemDescription" rows="3" maxlength="500" required placeholder="Describe identifying features, color, brand, or other details."></textarea></label>
+<label>Location *<input id="itemLocation" type="text" maxlength="100" required placeholder="e.g. Library"></label>
+<label>Reporter name *<input id="reporterName" type="text" maxlength="80" required placeholder="Your name"></label>
+<label>Contact information *<input id="contactInfo" type="text" maxlength="100" required placeholder="School email or contact number"></label>
+<label>Item picture (optional)<input id="itemPicture" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png"></label></div>
+<p class="privacy-note">Privacy reminder: avoid posting passwords, full ID numbers, or other sensitive details.</p><button class="primary-button" type="submit">＋ Submit report</button><p id="formMessage" class="form-message" role="status"></p></form></div>
+<aside class="manage-panel" id="manage"><p class="eyebrow">For school personnel</p><h2>Manage item details</h2><p class="muted">After checking the item and verifying the claim, update its report type or status.</p>
+<form id="statusForm"><label>Select item *<select id="statusItem" required><option value="">Choose a report</option></select></label>
+<label>Report type<select id="newReportType"><option value="">Keep current type</option><option>Lost Item</option><option>Found Item</option></select></label>
+<label>Item status<select id="newStatus"><option value="">Keep current status</option><option>Available</option><option>Claimed</option><option>Returned</option></select></label>
+<label class="check-label"><input id="ownershipVerified" type="checkbox"> I confirm that the item or claim has been checked.</label>
+<button class="secondary-button" type="submit">Save changes</button><p id="statusMessage" class="form-message" role="status"></p></form>
+<div class="notice"><strong>Prototype note</strong><p>This demo allows public report creation and updates. Before real school use, add staff sign-in and restrict who can change item statuses.</p></div></aside>
+</section></main><footer><strong>Findora</strong><span>Helping school communities reconnect with their belongings.</span></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="script.js"></script></body></html>
